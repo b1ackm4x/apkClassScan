@@ -11,7 +11,6 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        // 获取所有apk列表
         String processDir = "apk";
         String logDir = "log";
         List<File> apkList = FileUtil.scanApkFile(processDir);
@@ -26,7 +25,8 @@ public class Main {
                     allClasses.addAll(dexFile.getClasses());
                     for (ClassDef clazz : allClasses) {
                         String clazzName = clazz.toString();
-                        if (clazzName.toLowerCase().contains("http") && !clazzName.toLowerCase().contains("okhttp")) {
+                        // 过滤一些需要的类
+                        if (clazzName.toLowerCase().contains("okhttp")) {
                             okHttpReleatedClassList.add(clazz);
                         }
                     }
